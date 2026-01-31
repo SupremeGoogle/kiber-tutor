@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница - Навигация</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #f0f0f0;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #0f3460;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #4cc9f0, #4361ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(76, 201, 240, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #b8b8d1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .nav-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .nav-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .nav-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(76, 201, 240, 0.1), rgba(67, 97, 238, 0.05));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .nav-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(76, 201, 240, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nav-card:hover::before {
+            opacity: 1;
+        }
+        
+        .nav-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #4cc9f0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-card h2 i {
+            margin-right: 12px;
+            font-size: 1.3rem;
+        }
+        
+        .nav-card p {
+            color: #b8b8d1;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        
+        .nav-link {
+            display: inline-block;
+            padding: 10px 22px;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(67, 97, 238, 0.3);
+        }
+        
+        .nav-link:hover {
+            background: linear-gradient(45deg, #3a0ca3, #4361ee);
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.4);
+        }
+        
+        .file-info {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 40px;
+            border-left: 4px solid #4cc9f0;
+        }
+        
+        .file-info h3 {
+            color: #4cc9f0;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .file-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .file-tag {
+            background: rgba(67, 97, 238, 0.2);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #b8b8d1;
+            border: 1px solid rgba(67, 97, 238, 0.3);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 1px solid #0f3460;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+        }
+        
+        /* Иконки для ссылок */
+        .icon {
+            display: inline-block;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Навигация по HTML страницам</h1>
+            <p class="subtitle">Используйте ссылки ниже для перехода на другие страницы проекта. Все файлы связаны между собой через этот навигационный центр.</p>
+        </header>
+        
+        <main>
+            <div class="nav-container">
+                <!-- Основные страницы -->
+                <div class="nav-card">
+                    <h2><i class="fas fa-home"></i> Главная страница</h2>
+                    <p>Текущая страница - центральная навигация по всем HTML файлам в проекте.</p>
+                    <a href="index.html" class="nav-link">Открыть index.html</a>
+                </div>
+                
+                <div class="nav-card">
+                    <h2><i class="fas fa-user"></i> Страница "Обо мне"</h2>
+                    <p>Личная страница с информацией о создателе проекта. Возможно содержит биографические данные.</p>
+                    <a href="me.html" class="nav-link">Открыть me.html</a>
+                </div>
+                
+                <div class="nav-card">
+                    <h2><i class="fas fa-file-code"></i> Тестовая страница</h2>
+                    <p>Страница для тестирования функционала, экспериментов с кодом или демонстрации элементов.</p>
+                    <a href="test.html" class="nav-link">Открыть test.html</a>
+                </div>
+                
+                <!-- Дополнительные страницы -->
+                <div class="nav-card">
+                    <h2><i class="fas fa-list"></i> Страница имен</h2>
+                    <p>Страница, содержащая список имен или связанная с файлом names.css для стилизации.</p>
+                    <a href="names.html" class="nav-link">Открыть names.html</a>
+                </div>
+                
+                <div class="nav-card">
+                    <h2><i class="fas fa-image"></i> Страница Akbar</h2>
+                    <p>Страница, посвященная теме Akbar. Возможно содержит изображения или информацию по теме.</p>
+                    <a href="akbar.html" class="nav-link">Открыть akbar.html</a>
+                </div>
+                
+                <div class="nav-card">
+                    <h2><i class="fas fa-laugh"></i> Мем-страница</h2>
+                    <p>Развлекательная страница с мемами или юмористическим контентом.</p>
+                    <a href="meme.html" class="nav-link">Открыть meme.html</a>
+                </div>
+                
+                <div class="nav-card">
+                    <h2><i class="fas fa-code"></i> Страница ii</h2>
+                    <p>Страница с названием "ii.html". Содержимое неизвестно, требует исследования.</p>
+                    <a href="ii.html" class="nav-link">Открыть ii.html</a>
+                </div>
+                
+                <div class="nav-card">
+                    <h2><i class="fas fa-hashtag"></i> Неизвестный файл</h2>
+                    <p>Файл с хэш-именем "baaed95ce83e888e9bf...". Вероятно, временный или служебный файл.</p>
+                    <a href="#" class="nav-link" onclick="alert('Файл с таким именем не найден или недоступен'); return false;">Попробовать открыть</a>
+                </div>
+            </div>
+            
+            <!-- Информация о файлах -->
+            <div class="file-info">
+                <h3><i class="fas fa-folder-open"></i> Список файлов в проекте</h3>
+                <p>На основе предоставленного списка файлов были созданы ссылки для навигации. Ниже перечислены все файлы, обнаруженные в проекте:</p>
+                
+                <div class="file-list">
+                    <span class="file-tag">index.html</span>
+                    <span class="file-tag">me.html</span>
+                    <span class="file-tag">test.html</span>
+                    <span class="file-tag">names.html</span>
+                    <span class="file-tag">names.css</span>
+                    <span class="file-tag">akbar.html</span>
+                    <span class="file-tag">meme.html</span>
+                    <span class="file-tag">ii.html</span>
+                    <span class="file-tag">style.css</span>
+                    <span class="file-tag">image.png</span>
+                    <span class="file-tag">WIN_20240907_14_39...</span>
+                    <span class="file-tag">baaed95ce83e888e9bf...</span>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>Примечание:</strong> Для файлов с расширениями, отличными от .html (например, .css, .png), ссылки не созданы, так как они не являются веб-страницами.</p>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Навигационная система проекта &copy; 2023 | Все файлы взаимосвязаны через index.html</p>
+            <p style="margin-top: 8px; font-size: 0.8rem;">Используйте навигационные карточки для перехода между страницами</p>
+        </footer>
+    </div>
+
+    <script>
+        // Добавляем интерактивности при клике на карточки
+        document.querySelectorAll('.nav-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Игнорируем клики по ссылкам внутри карточки
+                if (e.target.tagName === 'A') return;
+                
+                const link = this.querySelector('.nav-link');
+                if (link && link.href && !link.href.includes('#')) {
+                    window.location.href = link.href;
+                }
+            });
+        });
+        
+        // Анимация появления карточек при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.nav-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+        });
+    </script>
+</body>
+</html>

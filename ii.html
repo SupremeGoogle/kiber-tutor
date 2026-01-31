@@ -1,0 +1,37 @@
+
+<html>
+<head>
+<title>Мой чат бот</title>
+</head>
+<body>
+<h3>Введите сообщение:</h3>
+<textarea id="полеВвода"  placeholder="Пиши смску"></textarea>
+<br><br>
+<button onclick="отправитьСообщение()">Задонатить</button>
+<h3>Ответ ИИ:</h3>
+<div id="ответИИ"></div>
+<script>
+async function отправитьСообщение() {
+  const текстПользователя = document.getElementById("полеВвода").value;
+  const ответСервера = await fetch("https://api.deepseek.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer sk-5cb04ed1e7324c12a3aaab46c10ff3e2"
+    },
+    body: JSON.stringify({
+      model: "deepseek-chat",
+      messages: [
+        {role: "system", content:"Отвечай как чайник"},
+        { role: "user", content: текстПользователя }
+      ]
+    })
+  });
+  const данные = await ответСервера.json();
+  document.getElementById("ответИИ").innerText =
+    данные.choices[0].message.content;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+body {
+background: #5b72da;
+color: white;
+text-align: center;
+}
+
+table {
+margin: auto;
+border-collapse: collapse;
+background: #71e7eb;
+}
+
+th, td {
+padding: 10px 16px;
+}
+
+th {
+background: #38bdf8;
+color: rgb(0, 0, 0)
+}
+
+th:hover{
+transform: scale(1.15);
+}
+th:hover{
+    background: red;
+}
+
+
